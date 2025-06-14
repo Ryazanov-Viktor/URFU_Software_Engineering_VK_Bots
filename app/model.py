@@ -1,0 +1,10 @@
+import joblib
+
+# Загружаем модель из файла
+model = joblib.load("model/model.pkl")
+
+# Предсказываем класс и вероятность
+def make_prediction(df):
+    prediction = model.predict(df)[0]
+    probability = model.predict_proba(df)[:, 1][0]
+    return prediction, probability
