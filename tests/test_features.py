@@ -1,4 +1,3 @@
-import pytest
 from datetime import datetime
 from app.features import calculate_age, transform_user_info
 
@@ -62,4 +61,4 @@ def test_transform_user_info():
     assert transformed_partial["has_photo"] is None
     assert transformed_partial["age"] is None
     assert transformed_partial["city"] is None
-    assert transformed_partial.get("albums") is None 
+    assert transformed_partial.get("albums") is None

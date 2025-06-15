@@ -13,10 +13,9 @@ class APIUser(HttpUser):
         """
         # Генерируем случайный числовой ID для разнообразия запросов
         random_id = random.randint(1, 100000)
-        
         # Заголовки и тело запроса
         headers = {"Content-Type": "application/json"}
         payload = {"uid": f"id{random_id}"}
 
         # Отправляем POST-запрос
-        self.client.post("/predict/", json=payload, headers=headers, name="/predict/") 
+        self.client.post("/predict/", json=payload, headers=headers, name="/predict/")

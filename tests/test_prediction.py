@@ -4,6 +4,7 @@ from app.main import app
 
 client = TestClient(app)
 
+
 def test_user_prediction_flow(mocker):
     """
     Тест, описывающий основной пользовательский сценарий (user story):
@@ -12,7 +13,7 @@ def test_user_prediction_flow(mocker):
     """
     # GIVEN: У нас есть корректный ID пользователя
     user_id = "vk.com/id1"
-    
+
     # AND: система может успешно собрать данные и сделать предсказание
     mocker.patch(
         "app.main.create_df_for_person",
@@ -35,4 +36,4 @@ def test_user_prediction_flow(mocker):
     assert data["prediction"] == 0
     assert data["probability"] == 0.95
     assert "not a bot" in data["message"]
-    assert data["uid"] == user_id 
+    assert data["uid"] == user_id

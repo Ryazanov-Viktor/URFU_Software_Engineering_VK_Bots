@@ -1,4 +1,3 @@
-import pytest
 from fastapi.testclient import TestClient
 import pandas as pd
 
@@ -57,4 +56,4 @@ def test_health_check_endpoint():
 
     # Проверяем статус-код и тело ответа
     assert response.status_code == 200
-    assert response.json() == {"status": "ok"} 
+    assert response.json() == {"status": "ok"}
