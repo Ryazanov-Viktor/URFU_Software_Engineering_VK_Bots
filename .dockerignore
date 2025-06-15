@@ -1,0 +1,28 @@
+# Исключаем виртуальное окружение
+venv/
+
+# Кеши и байткод
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Git
+.git
+.gitignore
+
+# Тесты
+tests/
+*.pytest_cache
+*.coverage
+
+# Исключаем все .pkl, кроме нужной модели
+*.pkl
+!model/model.pkl
+
+# Логи
+*.log
+
+# DS_Store на macOS
+.DS_Store
+
