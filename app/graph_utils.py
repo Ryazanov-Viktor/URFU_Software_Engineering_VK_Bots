@@ -1,5 +1,5 @@
 import networkx as nx
-from statistics import mean
+from statistics import mean, StatisticsError
 from time import sleep
 from app.vk_api import get_friends_ids
 
@@ -8,6 +8,7 @@ LIST_OF_FEATURES = [
     'degree_centrality', 'closeness_centrality', 'betweenness_centrality', 'diameter'
 ]
 
+
 def make_graph(user_id, uid2friends):
     get_friends_ids(user_id, uid2friends)
     sleep(0.3)
@@ -15,6 +16,7 @@ def make_graph(user_id, uid2friends):
         if friend not in uid2friends:
             get_friends_ids(friend, uid2friends)
             sleep(0.3)
+
 
 def make_graph_for_user(user_id, uid2friends):
     graph = nx.Graph()
@@ -28,21 +30,25 @@ def make_graph_for_user(user_id, uid2friends):
                 graph.add_edge(friend, friend2)
     return graph
 
+
 def get_graph_features(graph):
     avg_cl = nx.average_clustering(graph)
     trans = nx.transitivity(graph)
     try:
         avg_neighbor = mean(nx.average_neighbor_degree(graph).values())
-    except:
+    except StatisticsError:
         avg_neighbor = None
     try:
         avg_degree_conn = mean(nx.average_degree_connectivity(graph).values())
-    except:
+    except StatisticsError:
         avg_degree_conn = None
     deg_cent = mean(nx.degree_centrality(graph).values())
     close_cent = mean(nx.closeness_centrality(graph).values())
     btw_cent = mean(nx.betweenness_centrality(graph).values())
     diameter = nx.diameter(graph) if nx.is_connected(graph) else None
 
-    values = [avg_cl, trans, avg_neighbor, avg_degree_conn, deg_cent, close_cent, btw_cent, diameter]
+    values = [
+        avg_cl, trans, avg_neighbor, avg_degree_conn,
+        deg_cent, close_cent, btw_cent, diameter
+    ]
     return dict(zip(LIST_OF_FEATURES, values))
