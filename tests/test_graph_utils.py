@@ -58,4 +58,4 @@ def test_get_graph_features():
     assert features['avg_cl'] == 1.0  # У всех вершин кластеризация 1.0
     assert features['trans'] == 1.0  # Транзитивность для треугольника = 1
     assert nx.is_connected(graph)
-    assert features['diameter'] == 1.0 
+    assert features['diameter'] == 1.0

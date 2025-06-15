@@ -35,8 +35,10 @@ def test_get_user_info_not_found(mocker):
     mock_response.json.return_value = {"error": "invalid user id"}
     mocker.patch("requests.get", return_value=mock_response)
 
-    # Проверяем, что выбрасывается HTTPException (или возвращается None/пустой dict в зависимости от реализации)
-    # В вашей реализации выбрасывается HTTPException, но для unit-теста проще проверить возврат
+    # Проверяем, что выбрасывается HTTPException
+    # (или возвращается None/пустой dict в зависимости от реализации)
+    # В вашей реализации выбрасывается HTTPException,
+    # но для unit-теста проще проверить возврат
     with pytest.raises(Exception):
         get_user_info("несуществующий_id")
 
@@ -64,4 +66,4 @@ def test_get_friends_ids_private_profile(mocker):
 
     friends, count = get_friends_ids("1")
     assert count == 0
-    assert friends == [] 
+    assert friends == []
