@@ -33,6 +33,7 @@ def predict(request: UserRequest):
 def health_check():
     return {"status": "ok"}
 
+
 @app.get("/")
 def root():
     return {"message": "VK Bot Classifier is running!"}
