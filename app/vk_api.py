@@ -13,6 +13,7 @@ USER_FIELDS = [
     "has_photo", "sex", "bdate", "city", "country", "has_mobile", "counters"
 ]
 
+
 def extract_id_from_link(link: str) -> str:
     match = re.search(r"vk\.com/(id(\d+)|[a-zA-Z0-9_.]+)", link)
     if match:
@@ -20,6 +21,7 @@ def extract_id_from_link(link: str) -> str:
             return match.group(2)
         return match.group(1)
     return link
+
 
 def get_user_info(user_id):
     method = 'users.get'
@@ -34,6 +36,7 @@ def get_user_info(user_id):
         return response['response'][0]
     else:
         raise HTTPException(status_code=404, detail="User not found")
+
 
 def get_friends_ids(user_id, uid2friends=None):
     method = 'friends.get'
